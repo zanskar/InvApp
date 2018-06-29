@@ -8,9 +8,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    /**
+     * Tag for the log messages
+     */
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     /** Database helper that will provide us access to the database */
     private BookDbHelper mDbHelper;
@@ -128,7 +133,9 @@ public final class BookContract {
 
             // Execute the SQL statement
             db.execSQL(SQL_CREATE_BOOKS_TABLE);
+            Log.e(LOG_TAG, "tables crées" + BookContract.BookEntry.COLUMN_PRODUCT_NAME);
         }
+        
 
         /**
          * This is called when the database needs to be upgraded.
@@ -163,6 +170,8 @@ public final class BookContract {
         // there are no values).
         // The third argument is the ContentValues object containing the info for Mon livre.
         long newRowId = db.insert(BookContract.BookEntry.TABLE_NAME, null, values);
+
+        Log.e(LOG_TAG, "dummy values entered");
     }
 
     @Override
